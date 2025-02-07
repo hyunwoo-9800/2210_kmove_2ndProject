@@ -12,14 +12,11 @@ import java.util.Date;
  */
 public class Clock {
 
-	/**
-	 * @param args
-	 */
 	public String now() {
 		// TODO Auto-generated method stub
 
 		SimpleDateFormat f = new SimpleDateFormat("HH시 mm분 ss초");
 		return f.format(new Date());
 	}
-
+	
 }
