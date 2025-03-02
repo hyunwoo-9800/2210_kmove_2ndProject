@@ -1,12 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>JSP_Basic</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>StudentPortal</display-name>
+	<welcome-file-list>
+		<welcome-file>/WEB-INF/view/student_login.jsp</welcome-file>
+	</welcome-file-list>
+
+
+	<listener>
+		<listener-class>jdbc.DBCPInitListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>poolConfig</param-name>
+		<param-value>
+    
+      jdbcdriver=oracle.jdbc.OracleDriver
+      jdbcUrl=jdbc:oracle:thin:@localhost:1521/xe
+      dbUser=system
+      dbPass=1120
+      alidationQuery=select 1
+      minIdle=3
+      maxTotal=30
+      poolName=portal
+
+    </param-value>
+	</context-param>
+
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>util.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>LoginChcekFilter</filter-name>
+		<filter-class>util.LoginCheckFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>LoginChcekFilter</filter-name>
+		<url-pattern>/myPage.do</url-pattern>
+		<url-pattern>/list.do</url-pattern>
+		<url-pattern>/write.do</url-pattern>
+		<url-pattern>/free.do</url-pattern>
+		<url-pattern>/notice.do</url-pattern>
+		<url-pattern>/read.do</url-pattern>
+		<url-pattern>/modify.do</url-pattern>
+		<url-pattern>/delete.do</url-pattern>
+		<url-pattern>/regist.do</url-pattern>
+		<url-pattern>/interest.do</url-pattern>
+		<url-pattern>/lecture.do</url-pattern>
+		<url-pattern>/listStudent.do</url-pattern>
+		<url-pattern>/adminPage.do</url-pattern>
+		<url-pattern>/studentSearch.do</url-pattern>
+		<url-pattern>/admindelete.do</url-pattern>
+		<url-pattern>/adminmodify.do</url-pattern>
+		<url-pattern>/adminUpdate.do</url-pattern>
+		<url-pattern>/seiseki.do</url-pattern>
+		<url-pattern>/shougaku.do</url-pattern>
+		<url-pattern>/sidou.do</url-pattern>
+		<url-pattern>/siraseList.do</url-pattern>
+		<url-pattern>/siraseRead.do</url-pattern>
+		<url-pattern>/siraseDelete.do</url-pattern>
+		<url-pattern>/siraseModify.do</url-pattern>
+		<url-pattern>/lectureDelete.do</url-pattern>
+		<url-pattern>/lectureRegist.do</url-pattern>
+		<url-pattern>/addinterest.do</url-pattern>
+		<url-pattern>/delinterest.do</url-pattern>
+
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>ControllerUsingURI</servlet-name>
+		<servlet-class>mvc.controller.ControllerUsingURI</servlet-class>
+		<init-param>
+			<param-name>configFile</param-name>
+			<param-value>/WEB-INF/commandHandlerURI.properties</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ControllerUsingURI</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
 </web-app>

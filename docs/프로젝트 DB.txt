@@ -1,0 +1,95 @@
+GAKSE 테이블
+
+create table GAKSE(
+GAKSE_NUM int not null primary key,
+GAKSE_PW varchar2(20) not null,
+GAKSE_NAMAE varchar2(10) not null,
+GAKSE_MYNUM varchar2(13) not null,
+GAKSE_DENWA varchar2(15) not null,
+GAKSE_MAIL varchar2(50) not null,
+GAKSE_NYUGAKU date,
+GAKSE_GAKUNEN varchar2(1) not null,
+GAKSE_SENKO varchar2(15) not null,
+GAKSE_STATE int,
+GAKSE_GUNTAI int);
+
+学籍番号 
+パスワード
+名前
+住民登録番号
+電話
+電子メール
+入学時期
+学年
+専攻分野
+状態
+入隊
+
+
+-----------------------------------------
+
+STAFF 테이블
+
+create table STAFF(
+STAFF_ID varchar2(12) not null primary key,
+STAFF_PW varchar2(20) not null,
+STAFF_NAMAE varchar(10) not null,
+STAFF_DENWA varchar(15) not null,
+STAFF_KUBETU int);
+
+-----------------------------------------
+
+SCHEDULE 테이블
+
+create table SCHEDULE(
+SC_NUM int not null primary key,
+SC_EVENT varchar2(50) not null,
+SC_STARTDATE date not null,
+SC_ENDDATE date not null);
+
+スケジュール順
+スケジュール名
+スケジュール開始日
+スケジュール終了日
+
+
+-----------------------------------------
+
+
+KAMOKU 테이블
+
+create table KAMOKU(
+KAMOKU_CD varchar2(10) not null primary key,
+KAMOKU_NAMAE varchar2(30) not null,
+KAMOKU_SCORE int not null,
+KAMOKU_KUBETU int not null,
+KAMOKU_SENSEI varchar2(10)
+
+科目コード
+科目名
+科目単位
+科目の区別
+科目の担当教授
+
+
+-----------------------------------------
+
+BOARD 테이블
+
+create table board(
+BD_NUM int not null primary key,
+BD_KUBETU int not null,
+BD_TITLE varchar2(30) not null,
+BD_CONTENT long not null,
+BD_ADDDATE date not null,
+BD_WRITER varchar2(15) not null,
+BD_COUNT int not null);
+
+掲示物の順番
+掲示物の区別
+掲示物のタイトル
+掲示物の内容
+掲示物作成日
+掲示物作成者
+掲示物の再生数
+
